@@ -1,6 +1,7 @@
 package com.rperez.testsneedtopass.prac
 
 import com.rperez.testsneedtopass.prac.Constants.Companion.names
+import com.rperez.testsneedtopass.prac.Constants.Companion.namesDuplicates
 
 class FilterPrac {
 
@@ -19,7 +20,7 @@ class FilterPrac {
      * @return
      */
     fun removeAllRick(): List<String> {
-        return names.filter { it != "Rick"}
+        return names.filter { it != "Rick" }
     }
 
     /**
@@ -28,6 +29,6 @@ class FilterPrac {
      * @return
      */
     fun removeRs(): List<String> {
-        return names.filterNot { it.lowercase().contains("r")}
+        return names.filterNot { it.lowercase().contains("r") }
     }
 }

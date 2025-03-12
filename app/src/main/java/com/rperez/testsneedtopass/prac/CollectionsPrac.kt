@@ -2,6 +2,7 @@ package com.rperez.testsneedtopass.prac
 
 import com.rperez.testsneedtopass.prac.Constants.Companion.intStringMap
 import com.rperez.testsneedtopass.prac.Constants.Companion.names
+import com.rperez.testsneedtopass.prac.Constants.Companion.namesDuplicates
 
 /**
  * Solutions for each file to make each test pass
@@ -120,5 +121,9 @@ class CollectionsPrac {
      */
     fun mapNameInitialsToCount(): Map<Char, Int> {
         return names.groupingBy { it.first() }.eachCount()
+    }
+
+    fun removeDuplicates() : List<String> {
+        return namesDuplicates.toSet().toList()
     }
 }

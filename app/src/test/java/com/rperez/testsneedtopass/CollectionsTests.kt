@@ -1,6 +1,7 @@
 package com.rperez.testsneedtopass
 
 import com.rperez.testsneedtopass.prac.CollectionsPrac
+import com.rperez.testsneedtopass.prac.Constants
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
 
@@ -96,6 +97,13 @@ class CollectionsTests {
             '7' to 1,
         )
         var actual = collectionsPrac.mapNameInitialsToCount()
+        assertTrue(actual == expected)
+    }
+
+    @Test
+    fun removeDuplicatesTest() {
+        var expected = Constants.names
+        var actual = collectionsPrac.removeDuplicates()
         assertTrue(actual == expected)
     }
 }

@@ -3,6 +3,7 @@ package com.rperez.testsneedtopass.prac
 class Constants {
     companion object {
         var names = listOf<String>("Richard", "Ginger Ale", "7-Up", "Rick")
+        var namesDuplicates = listOf<String>("Rick", "Richard", "Ginger Ale", "7-Up", "Rick", "Richard")
         var numbers = listOf<Int>(1, 3, 55, 100, 34)
         var intStringMap = mapOf<Int, String>(
             1 to "one",
