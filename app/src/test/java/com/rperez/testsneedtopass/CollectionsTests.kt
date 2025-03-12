@@ -16,7 +16,7 @@ class CollectionsTests {
 
     @Test
     fun containsValue1test() {
-        var actual = collectionsPrac.containsValue1()
+        var actual = collectionsPrac.containsValueOne()
         assertTrue(actual)
     }
 

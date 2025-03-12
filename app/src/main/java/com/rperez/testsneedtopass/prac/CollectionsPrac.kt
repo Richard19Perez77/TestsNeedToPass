@@ -24,7 +24,7 @@ class CollectionsPrac {
      *
      * @return
      */
-    fun containsValue1(): Boolean {
+    fun containsValueOne(): Boolean {
         return intStringMap.values.contains("one")
     }
 
