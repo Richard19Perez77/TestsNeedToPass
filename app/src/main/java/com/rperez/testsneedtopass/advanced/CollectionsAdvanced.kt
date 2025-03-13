@@ -55,8 +55,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun mapValueToAccumulationOfOccurrence(): Map<Int, Int> {
-        // group by value, fold over each occurrence into sum from 0
-        return numbers.groupingBy { it }.fold(0) { acc, element -> acc + element }
+        return numbers.groupingBy { it }.fold(0) { acc, _ -> acc + 1 }
     }
 
     /**
@@ -102,9 +101,10 @@ class CollectionsAdvanced {
      *
      * @return
      */
-    fun increaseSalariesBy10Percent(): Map<String, Double> {
-        return salaries.mapValues { (_, salary) -> (salary * 1.1) }
+    fun increaseSalariesBy10Percent(): Map<String, Int> {
+        return salaries.mapValues { (_, salary) -> (salary * 1.1).toInt() }
     }
+
 
     /**
      * Group employees by age and count by name
@@ -262,8 +262,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun getPairOfListsSplittingAvailableAndUnavailableItems(): Pair<List<Item>, List<Item>> {
-        //val (available, unavailable) = items.partition { it.available }
-        return items.partition { it.isAvailable }
+        return stores.flatMap { it.items }.partition { it.isAvailable }
     }
 
     /**
@@ -272,12 +271,13 @@ class CollectionsAdvanced {
      * @return
      */
     fun getStoresWithMoreItemsAvailableThanNot(): Set<Store> {
-        return stores.filter { // get stores with more in stock than not
-            val (available, unavailable) = it.items.partition {
-                it.isAvailable // split into tow lists based on available
-            }
-            available.size > unavailable.size// filter condition
-        }.toSet() // ensures unique stores
+        return stores.filter { store ->
+            store.items.count { it.isAvailable } > store.items.count { !it.isAvailable }
+        }.toSet()
+    }
+
+    fun separateItemsByAvailableFlagIntoLists(): Pair<List<Item>, List<Item>> {
+        return items.partition { it.isAvailable }
     }
 
     /**

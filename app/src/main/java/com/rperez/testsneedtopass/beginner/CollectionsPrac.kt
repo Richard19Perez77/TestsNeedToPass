@@ -57,7 +57,7 @@ class CollectionsPrac {
      * @return
      */
     fun findLastRick(): String? {
-        return names.findLast { it.contains("i") }
+        return names.findLast { it.contains("Rick") }
     }
 
     /**
@@ -65,8 +65,8 @@ class CollectionsPrac {
      *
      * @return
      */
-    fun getFirstElementInListOrEmtpy(): String {
-        return if (names.isNotEmpty()) return names.first() else ""
+    fun getFirstElementInListOrEmpty(): String {
+        return if (names.isNotEmpty()) names.first() else ""
     }
 
     /**
@@ -101,7 +101,7 @@ class CollectionsPrac {
      *
      * @return
      */
-    fun listMinusFirstAndLast(): List<String> {
+    fun middleElementsOrAll(): List<String> {
         return if (names.size >= 2) {
             names.slice(1 until names.size - 1)
         } else names

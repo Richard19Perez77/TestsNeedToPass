@@ -45,7 +45,7 @@ class CollectionsTests {
     @Test
     fun getFirstElementInListOrEmtpyTest() {
         var expected = "Richard"
-        var actual = collectionsPrac.getFirstElementInListOrEmtpy()
+        var actual = collectionsPrac.getFirstElementInListOrEmpty()
         assertTrue(actual == expected)
     }
 
@@ -73,7 +73,7 @@ class CollectionsTests {
     @Test
     fun listMinusFirstAndLastTest() {
         var expected = listOf<String>("Ginger Ale", "7-Up")
-        var actual = collectionsPrac.listMinusFirstAndLast()
+        var actual = collectionsPrac.middleElementsOrAll()
         assertTrue(actual == expected)
     }
 
