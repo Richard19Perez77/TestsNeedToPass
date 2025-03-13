@@ -4,6 +4,8 @@ import com.rperez.testsneedtopass.constants.Constants.Companion.intStringMap
 import com.rperez.testsneedtopass.constants.Constants.Companion.names
 import com.rperez.testsneedtopass.constants.Constants.Companion.namesDuplicates
 import com.rperez.testsneedtopass.constants.Constants.Companion.numbers
+import com.rperez.testsneedtopass.constants.Constants.Companion.numbersList
+import com.rperez.testsneedtopass.constants.Constants.Companion.stringName
 import kotlin.math.sqrt
 
 /**
@@ -135,11 +137,6 @@ class CollectionsPrac {
     }
 
     /**
-     * Numbers list
-     */
-    var numbersList = listOf<Int>(1, 2, 3, 1, 5, 10, 1, 2)
-
-    /**
      * Create map of list item to list of occurrences
      *
      * @return
@@ -157,10 +154,6 @@ class CollectionsPrac {
         return numbersList.groupingBy { it }.eachCount()
     }
 
-    /**
-     * String name
-     */
-    var stringName = "Richard"
 
     /**
      * Map string to chars and count of each

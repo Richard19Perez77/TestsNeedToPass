@@ -1,31 +1,28 @@
 package com.rperez.testsneedtopass.advanced
 
+import com.rperez.testsneedtopass.constants.Constants.Companion.stores
+import com.rperez.testsneedtopass.constants.Constants.Companion.Item
+import com.rperez.testsneedtopass.constants.Constants.Companion.Store
+import com.rperez.testsneedtopass.constants.Constants.Companion.items
+import com.rperez.testsneedtopass.constants.Constants.Companion.words
+import com.rperez.testsneedtopass.constants.Constants.Companion.people
+import com.rperez.testsneedtopass.constants.Constants.Companion.Person
+import com.rperez.testsneedtopass.constants.Constants.Companion.numbersOccurrences
+import com.rperez.testsneedtopass.constants.Constants.Companion.employees
+import com.rperez.testsneedtopass.constants.Constants.Companion.namesMap
+import com.rperez.testsneedtopass.constants.Constants.Companion.nestedList
+import com.rperez.testsneedtopass.constants.Constants.Companion.numbersListOddEven
+import com.rperez.testsneedtopass.constants.Constants.Companion.numbersMap
+import com.rperez.testsneedtopass.constants.Constants.Companion.rawData
+import com.rperez.testsneedtopass.constants.Constants.Companion.salaries
+import com.rperez.testsneedtopass.constants.Constants.Companion.sentence
+
 /**
  * Collections advanced
  *
  * @constructor Create empty Collections advanced
  */
 class CollectionsAdvanced {
-
-    /**
-     * Person
-     *
-     * @property name
-     * @property age
-     * @constructor Create empty Person
-     */
-    data class Person(val name: String, val age: Int)
-
-    /**
-     * People
-     */
-    val people = listOf(
-        Person("Alice", 25),
-        Person("Bob", 30),
-        Person("Charlie", 25),
-        Person("David", 30),
-        Person("Eve", 35)
-    )
 
     /**
      * Group people by age
@@ -36,8 +33,6 @@ class CollectionsAdvanced {
         return people.groupBy { it.age }
     }
 
-    val words = listOf("apple", "banana", "apple", "orange", "banana", "banana")
-
     /**
      * Count occurrences of each word
      *
@@ -47,28 +42,14 @@ class CollectionsAdvanced {
         return words.groupingBy { it }.eachCount()
     }
 
-    val numbers = listOf(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)
-
     /**
      * Map value to accumulation of occurrence
      *
      * @return
      */
     fun mapValueToAccumulationOfOccurrence(): Map<Int, Int> {
-        return numbers.groupingBy { it }.fold(0) { acc, _ -> acc + 1 }
+        return numbersOccurrences.groupingBy { it }.fold(0) { acc, _ -> acc + 1 }
     }
-
-    /**
-     * Employees
-     */
-    val employees = listOf(
-        Person("Alice", 25),
-        Person("Bob", 30),
-        Person("Charlie", 25),
-        Person("David", 30),
-        Person("Eve", 35),
-        Person("Frank", 35)
-    )
 
     /**
      * Group by employees age then group by length of name
@@ -80,21 +61,15 @@ class CollectionsAdvanced {
             .mapValues { (_, people) -> people.groupBy { it.name.length } }
     }
 
-    val names = mapOf(1 to "alice", 2 to "bob", 3 to "charlie")
-
     /**
      * Convert map values to uppercase
      *
      * @return
      */
     fun convertMapValuesToUppercase(): Map<Int, String> {
-        return names.mapValues { (_, value) -> value.uppercase() }
+        return namesMap.mapValues { (_, value) -> value.uppercase() }
     }
 
-    /**
-     * Salaries
-     */
-    val salaries = mapOf("John" to 5000, "Jane" to 6000, "Jack" to 5500)
 
     /**
      * Increase salaries by10percent
@@ -116,10 +91,6 @@ class CollectionsAdvanced {
             .mapValues { (_, people) -> people.size }
     }
 
-    /**
-     * Numbers map
-     */
-    val numbersMap = mapOf(1 to "One", 2 to "Two", 3 to "Three")
 
     /**
      * Convert int key to string
@@ -131,13 +102,6 @@ class CollectionsAdvanced {
     }
 
     /**
-     * Nested list
-     */
-    val nestedList = listOf(
-        listOf(1, 2, 3), listOf(4, 5, 6), listOf(7, 8, 9)
-    )
-
-    /**
      * Sum the lists of List of ints
      *
      * @return
@@ -145,11 +109,6 @@ class CollectionsAdvanced {
     fun sumTheListsOfListOfInts(): Int {
         return nestedList.flatten().sum()
     }
-
-    /**
-     * Raw data
-     */
-    val rawData = "Alice:30,Bob:25,Charlie:30,David:40,Eve:25"
 
     /**
      * String parsing into list then map
@@ -161,11 +120,6 @@ class CollectionsAdvanced {
             .map { it.split(":") } // split into pairs for k:v
             .associate { it[0] to it[1].toInt() } // create map entry
     }
-
-    /**
-     * Sentence
-     */
-    val sentence = "Kotlin is a great programming language"
 
     /**
      * Group words by length from a sentence
@@ -185,76 +139,15 @@ class CollectionsAdvanced {
         return sentence.split(" ").groupingBy { it }.eachCount()
     }
 
-    /**
-     * Numbers list
-     */
-    val numbersList = listOf(10, 15, 20, 25, 30, 35)
 
     /**
-     * Filter and sum based on event count
+     * Filter and sum based on even count
      *
      * @return
      */
-    fun filterAndSumBasedOnEventCount(): Int {
-        return numbersList.filter { it % 2 == 0 }.sum()
+    fun filterAndSumBasedOnEvenCount(): Int {
+        return numbersListOddEven.filter { it % 2 == 0 }.sum()
     }
-
-    /**
-     * Item
-     *
-     * @property id
-     * @property isAvailable
-     * @constructor Create empty Item
-     */
-    data class Item(var id: Int = 0, var isAvailable: Boolean = false)
-
-    /**
-     * Items
-     */
-    var items = listOf<Item>(
-        Item(0, true),
-        Item(1, true),
-        Item(2, false),
-        Item(3, true)
-    )
-
-    /**
-     * Items2
-     */
-    var items2 = listOf<Item>(
-        Item(0, true),
-        Item(1, false),
-        Item(2, false),
-        Item(3, false)
-    )
-
-    /**
-     * Items3
-     */
-    var items3 = listOf<Item>(
-        Item(0, true),
-        Item(1, true),
-        Item(2, false),
-        Item(3, false)
-    )
-
-    /**
-     * Store
-     *
-     * @property id
-     * @property items
-     * @constructor Create empty Store
-     */
-    data class Store(var id: Int = 0, var items: List<Item> = listOf<Item>())
-
-    /**
-     * Stores
-     */
-    var stores = listOf<Store>(
-        Store(1, items),
-        Store(2, items2),
-        Store(3, items3)
-    )
 
     /**
      * Get pair of lists splitting available and unavailable items
