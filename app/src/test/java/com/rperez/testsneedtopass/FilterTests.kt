@@ -1,19 +1,19 @@
 package com.rperez.testsneedtopass
 
-import com.rperez.testsneedtopass.prac.FilterPrac
-import com.rperez.testsneedtopass.prac.Constants
+import com.rperez.testsneedtopass.beginner.CollectionsPrac
+import com.rperez.testsneedtopass.constants.Constants
 import org.junit.Test
 
 import org.junit.Assert.*
 
 class FilterTests {
 
-    var filterPrac = FilterPrac()
+    var collectionsPrac = CollectionsPrac()
 
     @Test
     fun remove1RickTest() {
         var expected = Constants.names - "Rick"
-        var actual = filterPrac.remove1Rick()
+        var actual = collectionsPrac.remove1Rick()
         assertTrue(actual.containsAll(expected) && actual.size == expected.size)
         assertEquals(expected, actual)
         assertArrayEquals(expected.toTypedArray(), actual.toTypedArray())
@@ -22,7 +22,7 @@ class FilterTests {
     @Test
     fun removeAllRickTest() {
         var expected = Constants.names.filter { it != "Rick" }
-        var actual = filterPrac.removeAllRick()
+        var actual = collectionsPrac.removeAllRick()
         assertTrue(actual.containsAll(expected) && actual.size == expected.size)
         assertEquals(expected, actual)
         assertArrayEquals(expected.toTypedArray(), actual.toTypedArray())
@@ -31,7 +31,7 @@ class FilterTests {
     @Test
     fun removeRsTest() {
         var expected = listOf<String>("7-Up")
-        var actual = filterPrac.removeRs()
+        var actual = collectionsPrac.removeRs()
         assertTrue(actual.containsAll(expected) && actual.size == expected.size)
         assertEquals(expected, actual)
         assertArrayEquals(expected.toTypedArray(), actual.toTypedArray())

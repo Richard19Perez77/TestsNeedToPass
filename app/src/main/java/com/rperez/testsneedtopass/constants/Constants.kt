@@ -1,4 +1,4 @@
-package com.rperez.testsneedtopass.prac
+package com.rperez.testsneedtopass.constants
 
 class Constants {
     companion object {

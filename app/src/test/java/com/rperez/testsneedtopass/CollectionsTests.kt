@@ -1,7 +1,7 @@
 package com.rperez.testsneedtopass
 
-import com.rperez.testsneedtopass.prac.CollectionsPrac
-import com.rperez.testsneedtopass.prac.Constants
+import com.rperez.testsneedtopass.beginner.CollectionsPrac
+import com.rperez.testsneedtopass.constants.Constants
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
 

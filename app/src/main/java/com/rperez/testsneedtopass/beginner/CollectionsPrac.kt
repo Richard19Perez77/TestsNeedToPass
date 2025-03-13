@@ -1,8 +1,10 @@
-package com.rperez.testsneedtopass.prac
+package com.rperez.testsneedtopass.beginner
 
-import com.rperez.testsneedtopass.prac.Constants.Companion.intStringMap
-import com.rperez.testsneedtopass.prac.Constants.Companion.names
-import com.rperez.testsneedtopass.prac.Constants.Companion.namesDuplicates
+import com.rperez.testsneedtopass.constants.Constants.Companion.intStringMap
+import com.rperez.testsneedtopass.constants.Constants.Companion.names
+import com.rperez.testsneedtopass.constants.Constants.Companion.namesDuplicates
+import com.rperez.testsneedtopass.constants.Constants.Companion.numbers
+import kotlin.math.sqrt
 
 /**
  * Solutions for each file to make each test pass
@@ -123,7 +125,104 @@ class CollectionsPrac {
         return names.groupingBy { it.first() }.eachCount()
     }
 
-    fun removeDuplicates() : List<String> {
+    /**
+     * Remove duplicates
+     *
+     * @return
+     */
+    fun removeDuplicates(): List<String> {
         return namesDuplicates.toSet().toList()
+    }
+
+    /**
+     * Numbers list
+     */
+    var numbersList = listOf<Int>(1, 2, 3, 1, 5, 10, 1, 2)
+
+    /**
+     * Create map of list item to list of occurrences
+     *
+     * @return
+     */
+    fun createMapOfListItemToListOfOccurrences(): Map<Int, List<Int>> {
+        return numbersList.groupBy { it }
+    }
+
+    /**
+     * Map of value to count
+     *
+     * @return
+     */
+    fun mapOfValueToCount(): Map<Int, Int> {
+        return numbersList.groupingBy { it }.eachCount()
+    }
+
+    /**
+     * String name
+     */
+    var stringName = "Richard"
+
+    /**
+     * Map string to chars and count of each
+     *
+     * @return
+     */
+    fun mapStringToCharsAndCountOfEach(): Map<Char, Int> {
+        // don't map to lowercase will turn to a string, lowercase first
+        return stringName.lowercase().groupingBy { it }.eachCount()
+    }
+
+    /**
+     * Remove1rick
+     *
+     * @return
+     */
+    fun remove1Rick(): List<String> {
+        return names - "Rick"
+    }
+
+    /**
+     * Remove all rick
+     *
+     * @return
+     */
+    fun removeAllRick(): List<String> {
+        return names.filter { it != "Rick" }
+    }
+
+    /**
+     * Remove rs
+     *
+     * @return
+     */
+    fun removeRs(): List<String> {
+        return names.filterNot { it.lowercase().contains("r") }
+    }
+
+    /**
+     * Make squares
+     *
+     * @return
+     */
+    fun makeSquares(): List<Int> {
+        return numbers.map { it * it }
+    }
+
+    /**
+     * Get square roots
+     *
+     * @return
+     */
+    fun getSquareRoots(): List<Int> {
+        return numbers.map { sqrt(it.toDouble()).toInt() }
+    }
+
+    /**
+     * Get string versions
+     *
+     * @return
+     */
+    fun getStringVersions(): List<String> {
+        return numbers.map { it.toString() }
     }
 }
