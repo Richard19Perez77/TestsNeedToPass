@@ -1,109 +1,113 @@
 package com.rperez.testsneedtopass.beginner
 
-import com.rperez.testsneedtopass.constants.Constants.Companion.intStringMap
-import com.rperez.testsneedtopass.constants.Constants.Companion.names
-import com.rperez.testsneedtopass.constants.Constants.Companion.namesDuplicates
-import com.rperez.testsneedtopass.constants.Constants.Companion.numbers
-import com.rperez.testsneedtopass.constants.Constants.Companion.numbersList
-import com.rperez.testsneedtopass.constants.Constants.Companion.stringName
 import kotlin.math.sqrt
 
 /**
- * Solutions for each file to make each test pass
+ * Collections beginner
  *
- * @constructor Create empty Collections prac
+ * @constructor Create empty Collections beginner
  */
-class CollectionsPrac {
+class CollectionsBeginner {
 
     /**
      * Contains key1
      *
+     * @param intStringMap
      * @return
      */
-    fun containsKey1(): Boolean {
+    fun containsKey1(intStringMap: Map<Int, String>): Boolean {
         return intStringMap.keys.contains(1)
     }
 
     /**
-     * Contains value1
+     * Contains value one
      *
+     * @param intStringMap
      * @return
      */
-    fun containsValueOne(): Boolean {
+    fun containsValueOne(intStringMap: Map<Int, String>): Boolean {
         return intStringMap.values.contains("one")
     }
 
     /**
-     * Element at1list
+     * Element at0list
      *
+     * @param names
      * @return
      */
-    fun elementAt0List(): String {
+    fun elementAt0List(names: List<String>): String {
         return if (names.isNotEmpty()) {
             names.elementAt(0)
         } else ""
     }
 
     /**
-     * Find rick from ck
+     * Find rick from partial
      *
+     * @param names
      * @return
      */
-    fun findRickFromPartial(): String? {
+    fun findRickFromPartial(names: List<String>): String? {
         return names.find { it.contains("ck") }
     }
 
     /**
      * Find last rick
      *
+     * @param names
      * @return
      */
-    fun findLastRick(): String? {
+    fun findLastRick(names: List<String>): String? {
         return names.findLast { it.contains("Rick") }
     }
 
     /**
-     * Get first element in list or emtpy
+     * Get first element in list or empty
      *
+     * @param names
      * @return
      */
-    fun getFirstElementInListOrEmpty(): String {
+    fun getFirstElementInListOrEmpty(names: List<String>): String {
         return if (names.isNotEmpty()) names.first() else ""
     }
 
     /**
      * Get first element in list or null
      *
+     * @param names
      * @return
      */
-    fun getFirstElementInListOrNull(): String? {
+    fun getFirstElementInListOrNull(names: List<String>): String? {
         return names.firstOrNull()
     }
 
     /**
      * Index of first ric
      *
+     * @param names
      * @return
      */
-    fun indexOfFirstRic(): Int {
+    fun indexOfFirstRic(names: List<String>): Int {
         return names.indexOfFirst { it.contains("Ric") }
     }
 
     /**
      * Index of last ric
      *
+     * @param names
      * @return
      */
-    fun indexOfLastRic(): Int {
+    fun indexOfLastRic(names: List<String>): Int {
         return names.indexOfLast { it.contains("Ric") }
     }
 
     /**
-     * List minus first and last
+     * Middle elements or all
      *
+     * @param names
      * @return
      */
-    fun middleElementsOrAll(): List<String> {
+    fun middleElementsOrAll(names: List<String>): List<String> {
         return if (names.size >= 2) {
             names.slice(1 until names.size - 1)
         } else names
@@ -112,45 +116,50 @@ class CollectionsPrac {
     /**
      * Map name to char count
      *
+     * @param names
      * @return
      */
-    fun mapNameToCharCount(): Map<String, Int> {
+    fun mapNameToCharCount(names: List<String>): Map<String, Int> {
         return names.associate { it to it.length }
     }
 
     /**
      * Map name initials to count
      *
+     * @param names
      * @return
      */
-    fun mapNameInitialsToCount(): Map<Char, Int> {
+    fun mapNameInitialsToCount(names: List<String>): Map<Char, Int> {
         return names.groupingBy { it.first() }.eachCount()
     }
 
     /**
      * Remove duplicates
      *
+     * @param namesDuplicates
      * @return
      */
-    fun removeDuplicates(): List<String> {
+    fun removeDuplicates(namesDuplicates: List<String>): List<String> {
         return namesDuplicates.toSet().toList()
     }
 
     /**
      * Create map of list item to list of occurrences
      *
+     * @param numbersList
      * @return
      */
-    fun createMapOfListItemToListOfOccurrences(): Map<Int, List<Int>> {
+    fun createMapOfListItemToListOfOccurrences(numbersList: List<Int>): Map<Int, List<Int>> {
         return numbersList.groupBy { it }
     }
 
     /**
      * Map of value to count
      *
+     * @param numbersList
      * @return
      */
-    fun mapOfValueToCount(): Map<Int, Int> {
+    fun mapOfValueToCount(numbersList: List<Int>): Map<Int, Int> {
         return numbersList.groupingBy { it }.eachCount()
     }
 
@@ -158,9 +167,10 @@ class CollectionsPrac {
     /**
      * Map string to chars and count of each
      *
+     * @param stringName
      * @return
      */
-    fun mapStringToCharsAndCountOfEach(): Map<Char, Int> {
+    fun mapStringToCharsAndCountOfEach(stringName: String): Map<Char, Int> {
         // don't map to lowercase will turn to a string, lowercase first
         return stringName.lowercase().groupingBy { it }.eachCount()
     }
@@ -168,54 +178,60 @@ class CollectionsPrac {
     /**
      * Remove1rick
      *
+     * @param names
      * @return
      */
-    fun remove1Rick(): List<String> {
+    fun remove1Rick(names: List<String>): List<String> {
         return names - "Rick"
     }
 
     /**
      * Remove all rick
      *
+     * @param names
      * @return
      */
-    fun removeAllRick(): List<String> {
+    fun removeAllRick(names: List<String>): List<String> {
         return names.filter { it != "Rick" }
     }
 
     /**
      * Remove rs
      *
+     * @param names
      * @return
      */
-    fun removeRs(): List<String> {
+    fun removeRs(names: List<String>): List<String> {
         return names.filterNot { it.lowercase().contains("r") }
     }
 
     /**
      * Make squares
      *
+     * @param numbers
      * @return
      */
-    fun makeSquares(): List<Int> {
+    fun makeSquares(numbers: List<Int>): List<Int> {
         return numbers.map { it * it }
     }
 
     /**
      * Get square roots
      *
+     * @param numbers
      * @return
      */
-    fun getSquareRoots(): List<Int> {
+    fun getSquareRoots(numbers: List<Int>): List<Int> {
         return numbers.map { sqrt(it.toDouble()).toInt() }
     }
 
     /**
      * Get string versions
      *
+     * @param numbers
      * @return
      */
-    fun getStringVersions(): List<String> {
+    fun getStringVersions(numbers: List<Int>): List<String> {
         return numbers.map { it.toString() }
     }
 }
