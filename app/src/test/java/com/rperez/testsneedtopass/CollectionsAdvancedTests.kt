@@ -14,7 +14,7 @@ import org.junit.Test
  *
  * @constructor Create empty Collections advanced test
  */
-class CollectionsAdvancedTest {
+class CollectionsAdvancedTests {
 
     /**
      * Collections advanced

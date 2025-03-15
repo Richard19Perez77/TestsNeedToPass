@@ -12,7 +12,7 @@ import org.junit.Test
  *
  * @constructor Create empty Collections beginner test
  */
-class CollectionsBeginnerTest {
+class CollectionsBeginnerTests {
 
     /**
      * Collections beginner
