@@ -98,7 +98,7 @@ class CollectionsBeginner {
      * @return
      */
     fun indexOfLastRic(names: List<String>): Int {
-        return names.indexOfLast { it.contains("Ric") }
+        return names.indexOfLast { it.lowercase().contains("ric") }
     }
 
     /**
@@ -108,7 +108,7 @@ class CollectionsBeginner {
      * @return
      */
     fun middleElementsOrAll(names: List<String>): List<String> {
-        return if (names.size >= 2) {
+        return if (names.size > 2) {
             names.slice(1 until names.size - 1)
         } else names
     }

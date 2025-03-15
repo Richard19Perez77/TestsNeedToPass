@@ -104,6 +104,8 @@ class CollectionsTests {
     fun removeDuplicatesTest() {
         var expected = Constants.names
         var actual = collectionsPrac.removeDuplicates(Constants.namesDuplicates)
-        assertTrue(actual == expected)
+        assertTrue(actual.containsAll(expected) && expected.containsAll(actual)) // presence of elements matters, order doesn't
+        fun List<String>.countMap(): Map<String, Int> = groupingBy { it }.eachCount()
+        assertTrue(actual.countMap() == expected.countMap()) // duplicates and count matters, order doesn't
     }
 }

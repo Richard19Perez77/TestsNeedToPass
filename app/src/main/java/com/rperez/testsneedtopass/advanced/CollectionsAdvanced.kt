@@ -112,7 +112,9 @@ class CollectionsAdvanced {
      * @return
      */
     fun stringParsingIntoListThenMap(rawData: String): Map<String, Int> {
-        return rawData.split(",") // split into list of items
+        return rawData
+            .split(",")
+            .filter { it.isNotBlank() }// split into list of items
             .map { it.split(":") } // split into pairs for k:v
             .associate { it[0] to it[1].toInt() } // create map entry
     }
@@ -124,7 +126,11 @@ class CollectionsAdvanced {
      * @return
      */
     fun groupWordsByLengthFromASentence(sentence: String): Map<Int, List<String>> {
-        return sentence.split(" ").groupBy { it.length }
+        return sentence
+            .split(" ")
+            .map { it.replace(Regex("[^\\w']"), "") }
+            .filter { it.isNotBlank() }
+            .groupBy { it.length }
     }
 
     /**
@@ -134,7 +140,11 @@ class CollectionsAdvanced {
      * @return
      */
     fun calculateWordFrequencyInASentence(sentence: String): Map<String, Int> {
-        return sentence.split(" ").groupingBy { it }.eachCount()
+        return sentence
+            .split(" ")
+            .filter { it.isNotBlank() }
+            .groupingBy { it }
+            .eachCount()
     }
 
 
@@ -187,6 +197,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun getItemsAvailableInAllStores(stores: List<Store>): Set<Item> {
+        if (stores.isEmpty()) return emptySet()
         return stores.map { it.items.toSet() }.reduce { available, items ->
             available.intersect(items)
         }
@@ -240,6 +251,7 @@ class CollectionsAdvanced {
             }
             // if local count > max, use this store as return value
             if (availableCount > maxCount) {
+                maxCount = availableCount
                 res.clear()
                 res.add(s)
             } else if (availableCount == maxCount) {
@@ -258,6 +270,11 @@ class CollectionsAdvanced {
     fun findTheStoreWithTheMostAvailableItems2(stores: List<Store>): List<Store> {
         val maxCount =
             stores.maxOfOrNull { it.items.count { it.isAvailable } } ?: return emptyList()
-        return stores.filter { it.items.count { it.isAvailable } == maxCount }
+
+        return if (maxCount > 0) {
+            stores.filter { it.items.count { it.isAvailable } == maxCount }
+        } else {
+            emptyList()
+        }
     }
 }
