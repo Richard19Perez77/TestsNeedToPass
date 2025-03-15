@@ -7,10 +7,22 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Test
 
+/**
+ * Collections beginner test
+ *
+ * @constructor Create empty Collections beginner test
+ */
 class CollectionsBeginnerTest {
 
+    /**
+     * Collections beginner
+     */
     private val collectionsBeginner = CollectionsBeginner()
 
+    /**
+     * Test contains key1
+     *
+     */
     @Test
     fun testContainsKey1() {
         val map = mapOf(1 to "one", 2 to "two")
@@ -20,6 +32,10 @@ class CollectionsBeginnerTest {
         assertFalse(collectionsBeginner.containsKey1(emptyMap))
     }
 
+    /**
+     * Test contains value one
+     *
+     */
     @Test
     fun testContainsValueOne() {
         val map = mapOf(1 to "one", 2 to "two")
@@ -29,6 +45,10 @@ class CollectionsBeginnerTest {
         assertFalse(collectionsBeginner.containsValueOne(mapWithoutOne))
     }
 
+    /**
+     * Test element at0list
+     *
+     */
     @Test
     fun testElementAt0List() {
         val list = listOf("Rick", "Morty", "Summer")
@@ -38,6 +58,10 @@ class CollectionsBeginnerTest {
         assertEquals("", collectionsBeginner.elementAt0List(emptyList))
     }
 
+    /**
+     * Test find rick from partial
+     *
+     */
     @Test
     fun testFindRickFromPartial() {
         val list = listOf("Rick", "Morty", "Summer")
@@ -47,6 +71,10 @@ class CollectionsBeginnerTest {
         assertNull(collectionsBeginner.findRickFromPartial(listWithoutRick))
     }
 
+    /**
+     * Test find last rick
+     *
+     */
     @Test
     fun testFindLastRick() {
         val list = listOf("Rick", "Morty", "Rick", "Summer")
@@ -56,6 +84,10 @@ class CollectionsBeginnerTest {
         assertNull(collectionsBeginner.findLastRick(listWithoutRick))
     }
 
+    /**
+     * Test get first element in list or empty
+     *
+     */
     @Test
     fun testGetFirstElementInListOrEmpty() {
         val list = listOf("Rick", "Morty", "Summer")
@@ -65,6 +97,10 @@ class CollectionsBeginnerTest {
         assertEquals("", collectionsBeginner.getFirstElementInListOrEmpty(emptyList))
     }
 
+    /**
+     * Test get first element in list or null
+     *
+     */
     @Test
     fun testGetFirstElementInListOrNull() {
         val list = listOf("Rick", "Morty", "Summer")
@@ -74,6 +110,10 @@ class CollectionsBeginnerTest {
         assertNull(collectionsBeginner.getFirstElementInListOrNull(emptyList))
     }
 
+    /**
+     * Test index of first ric
+     *
+     */
     @Test
     fun testIndexOfFirstRic() {
         val list = listOf("Rick", "Morty", "Summer", "Eric")
@@ -83,6 +123,10 @@ class CollectionsBeginnerTest {
         assertEquals(-1, collectionsBeginner.indexOfFirstRic(listWithoutRic))
     }
 
+    /**
+     * Test index of last ric
+     *
+     */
     @Test
     fun testIndexOfLastRic() {
         val list = listOf("Rick", "Morty", "Summer", "Eric")
@@ -92,6 +136,10 @@ class CollectionsBeginnerTest {
         assertEquals(-1, collectionsBeginner.indexOfLastRic(listWithoutRic))
     }
 
+    /**
+     * Test middle elements or all
+     *
+     */
     @Test
     fun testMiddleElementsOrAll() {
         val list = listOf("Rick", "Morty", "Summer", "Beth")
@@ -101,6 +149,10 @@ class CollectionsBeginnerTest {
         assertEquals(listOf("Rick", "Morty"), collectionsBeginner.middleElementsOrAll(smallList))
     }
 
+    /**
+     * Test map name to char count
+     *
+     */
     @Test
     fun testMapNameToCharCount() {
         val list = listOf("Rick", "Morty")
@@ -108,6 +160,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedMap, collectionsBeginner.mapNameToCharCount(list))
     }
 
+    /**
+     * Test map name initials to count
+     *
+     */
     @Test
     fun testMapNameInitialsToCount() {
         val list = listOf("Rick", "Morty", "Rick", "Summer")
@@ -115,6 +171,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedMap, collectionsBeginner.mapNameInitialsToCount(list))
     }
 
+    /**
+     * Test remove duplicates
+     *
+     */
     @Test
     fun testRemoveDuplicates() {
         val list = listOf("Rick", "Morty", "Rick", "Summer")
@@ -122,6 +182,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedList, collectionsBeginner.removeDuplicates(list))
     }
 
+    /**
+     * Test create map of list item to list of occurrences
+     *
+     */
     @Test
     fun testCreateMapOfListItemToListOfOccurrences() {
         val list = listOf(1, 2, 2, 3, 3, 3)
@@ -133,6 +197,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedMap, collectionsBeginner.createMapOfListItemToListOfOccurrences(list))
     }
 
+    /**
+     * Test map of value to count
+     *
+     */
     @Test
     fun testMapOfValueToCount() {
         val list = listOf(1, 2, 2, 3, 3, 3)
@@ -140,6 +208,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedMap, collectionsBeginner.mapOfValueToCount(list))
     }
 
+    /**
+     * Test map string to chars and count of each
+     *
+     */
     @Test
     fun testMapStringToCharsAndCountOfEach() {
         val string = "hello"
@@ -147,6 +219,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedMap, collectionsBeginner.mapStringToCharsAndCountOfEach(string))
     }
 
+    /**
+     * Test remove1rick
+     *
+     */
     @Test
     fun testRemove1Rick() {
         val list = listOf("Rick", "Morty", "Rick", "Summer")
@@ -154,6 +230,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedList, collectionsBeginner.remove1Rick(list))
     }
 
+    /**
+     * Test remove all rick
+     *
+     */
     @Test
     fun testRemoveAllRick() {
         val list = listOf("Rick", "Morty", "Rick", "Summer")
@@ -161,6 +241,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedList, collectionsBeginner.removeAllRick(list))
     }
 
+    /**
+     * Test remove rs
+     *
+     */
     @Test
     fun testRemoveRs() {
         val list = listOf("Rick", "Morty", "Summer", "Beth", "Jerry", "Photography Raptor")
@@ -168,6 +252,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedList, collectionsBeginner.removeRs(list))
     }
 
+    /**
+     * Test make squares
+     *
+     */
     @Test
     fun testMakeSquares() {
         val list = listOf(1, 2, 3)
@@ -175,6 +263,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedList, collectionsBeginner.makeSquares(list))
     }
 
+    /**
+     * Test get square roots
+     *
+     */
     @Test
     fun testGetSquareRoots() {
         val list = listOf(4, 9, 16)
@@ -182,6 +274,10 @@ class CollectionsBeginnerTest {
         assertEquals(expectedList, collectionsBeginner.getSquareRoots(list))
     }
 
+    /**
+     * Test get string versions
+     *
+     */
     @Test
     fun testGetStringVersions() {
         val list = listOf(1, 2, 3)

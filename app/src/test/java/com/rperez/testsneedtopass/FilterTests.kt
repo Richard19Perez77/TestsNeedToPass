@@ -6,10 +6,22 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/**
+ * Filter tests
+ *
+ * @constructor Create empty Filter tests
+ */
 class FilterTests {
 
+    /**
+     * Collections prac
+     */
     var collectionsPrac = CollectionsBeginner()
 
+    /**
+     * Remove1rick test
+     *
+     */
     @Test
     fun remove1RickTest() {
         var expected = Constants.names - "Rick"
@@ -19,6 +31,10 @@ class FilterTests {
         assertArrayEquals(expected.toTypedArray(), actual.toTypedArray())
     }
 
+    /**
+     * Remove all rick test
+     *
+     */
     @Test
     fun removeAllRickTest() {
         var expected = Constants.names.filter { it != "Rick" }
@@ -28,6 +44,10 @@ class FilterTests {
         assertArrayEquals(expected.toTypedArray(), actual.toTypedArray())
     }
 
+    /**
+     * Remove rs test
+     *
+     */
     @Test
     fun removeRsTest() {
         var expected = listOf<String>("7-Up")

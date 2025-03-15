@@ -5,22 +5,39 @@ import com.rperez.testsneedtopass.constants.Constants
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
 
+/**
+ * Collections tests
+ *
+ * @constructor Create empty Collections tests
+ */
 class CollectionsTests {
 
     var collectionsPrac = CollectionsBeginner()
 
+    /**
+     * Contains key1test
+     *
+     */
     @Test
     fun containsKey1Test() {
         var actual = collectionsPrac.containsKey1(Constants.intStringMap)
         assertTrue(actual)
     }
 
+    /**
+     * Contains value1test
+     *
+     */
     @Test
     fun containsValue1test() {
         var actual = collectionsPrac.containsValueOne(Constants.intStringMap)
         assertTrue(actual)
     }
 
+    /**
+     * Element at0list test
+     *
+     */
     @Test
     fun elementAt0ListTest() {
         var expected = "Richard"
@@ -28,6 +45,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Find richard from c k test
+     *
+     */
     @Test
     fun findRichardFromCKTest() {
         var expected = "Rick"
@@ -35,6 +56,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Find last rick test
+     *
+     */
     @Test
     fun findLastRickTest() {
         var expected = "Rick"
@@ -42,6 +67,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Get first element in list or emtpy test
+     *
+     */
     @Test
     fun getFirstElementInListOrEmtpyTest() {
         var expected = "Richard"
@@ -49,6 +78,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Get first element in list or null test
+     *
+     */
     @Test
     fun getFirstElementInListOrNullTest() {
         var expected = "Richard"
@@ -56,6 +89,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Index of first ric test
+     *
+     */
     @Test
     fun indexOfFirstRicTest() {
         var expected = 0
@@ -63,6 +100,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Index of last ric test
+     *
+     */
     @Test
     fun indexOfLastRicTest() {
         var expected = 3
@@ -70,6 +111,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * List minus first and last test
+     *
+     */
     @Test
     fun listMinusFirstAndLastTest() {
         var expected = listOf<String>("Ginger Ale", "7-Up")
@@ -77,6 +122,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Map name to char count test
+     *
+     */
     @Test
     fun mapNameToCharCountTest() {
         var expected = mapOf<String, Int>(
@@ -89,6 +138,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Map name initials tocount test
+     *
+     */
     @Test
     fun mapNameInitialsTocountTest() {
         var expected = mapOf<Char, Int>(
@@ -100,6 +153,10 @@ class CollectionsTests {
         assertTrue(actual == expected)
     }
 
+    /**
+     * Remove duplicates test
+     *
+     */
     @Test
     fun removeDuplicatesTest() {
         var expected = Constants.names
