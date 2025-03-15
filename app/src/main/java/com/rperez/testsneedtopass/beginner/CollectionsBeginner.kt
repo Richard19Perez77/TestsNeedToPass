@@ -16,7 +16,7 @@ class CollectionsBeginner {
      * @return
      */
     fun containsKey1(intStringMap: Map<Int, String>): Boolean {
-        return intStringMap.keys.contains(1)
+        TODO()
     }
 
     /**
@@ -26,7 +26,7 @@ class CollectionsBeginner {
      * @return
      */
     fun containsValueOne(intStringMap: Map<Int, String>): Boolean {
-        return intStringMap.values.contains("one")
+        TODO()
     }
 
     /**
@@ -36,9 +36,7 @@ class CollectionsBeginner {
      * @return
      */
     fun elementAt0List(names: List<String>): String {
-        return if (names.isNotEmpty()) {
-            names.elementAt(0)
-        } else ""
+        TODO()
     }
 
     /**
@@ -48,7 +46,7 @@ class CollectionsBeginner {
      * @return
      */
     fun findRickFromPartial(names: List<String>): String? {
-        return names.find { it.contains("ck") }
+        TODO()
     }
 
     /**
@@ -58,7 +56,7 @@ class CollectionsBeginner {
      * @return
      */
     fun findLastRick(names: List<String>): String? {
-        return names.findLast { it.contains("Rick") }
+        TODO()
     }
 
     /**
@@ -68,7 +66,7 @@ class CollectionsBeginner {
      * @return
      */
     fun getFirstElementInListOrEmpty(names: List<String>): String {
-        return if (names.isNotEmpty()) names.first() else ""
+        TODO()
     }
 
     /**
@@ -78,7 +76,7 @@ class CollectionsBeginner {
      * @return
      */
     fun getFirstElementInListOrNull(names: List<String>): String? {
-        return names.firstOrNull()
+        TODO()
     }
 
     /**
@@ -88,7 +86,7 @@ class CollectionsBeginner {
      * @return
      */
     fun indexOfFirstRic(names: List<String>): Int {
-        return names.indexOfFirst { it.contains("Ric") }
+        TODO()
     }
 
     /**
@@ -98,7 +96,7 @@ class CollectionsBeginner {
      * @return
      */
     fun indexOfLastRic(names: List<String>): Int {
-        return names.indexOfLast { it.lowercase().contains("ric") }
+        TODO()
     }
 
     /**
@@ -108,9 +106,7 @@ class CollectionsBeginner {
      * @return
      */
     fun middleElementsOrAll(names: List<String>): List<String> {
-        return if (names.size > 2) {
-            names.slice(1 until names.size - 1)
-        } else names
+        TODO()
     }
 
     /**
@@ -120,7 +116,7 @@ class CollectionsBeginner {
      * @return
      */
     fun mapNameToCharCount(names: List<String>): Map<String, Int> {
-        return names.associate { it to it.length }
+        TODO()
     }
 
     /**
@@ -130,7 +126,7 @@ class CollectionsBeginner {
      * @return
      */
     fun mapNameInitialsToCount(names: List<String>): Map<Char, Int> {
-        return names.groupingBy { it.first() }.eachCount()
+        TODO()
     }
 
     /**
@@ -140,7 +136,7 @@ class CollectionsBeginner {
      * @return
      */
     fun removeDuplicates(namesDuplicates: List<String>): List<String> {
-        return namesDuplicates.toSet().toList()
+        TODO()
     }
 
     /**
@@ -150,7 +146,7 @@ class CollectionsBeginner {
      * @return
      */
     fun createMapOfListItemToListOfOccurrences(numbersList: List<Int>): Map<Int, List<Int>> {
-        return numbersList.groupBy { it }
+        TODO()
     }
 
     /**
@@ -160,7 +156,7 @@ class CollectionsBeginner {
      * @return
      */
     fun mapOfValueToCount(numbersList: List<Int>): Map<Int, Int> {
-        return numbersList.groupingBy { it }.eachCount()
+        TODO()
     }
 
 
@@ -172,7 +168,7 @@ class CollectionsBeginner {
      */
     fun mapStringToCharsAndCountOfEach(stringName: String): Map<Char, Int> {
         // don't map to lowercase will turn to a string, lowercase first
-        return stringName.lowercase().groupingBy { it }.eachCount()
+        TODO()
     }
 
     /**
@@ -182,7 +178,7 @@ class CollectionsBeginner {
      * @return
      */
     fun remove1Rick(names: List<String>): List<String> {
-        return names - "Rick"
+        TODO()
     }
 
     /**
@@ -192,7 +188,7 @@ class CollectionsBeginner {
      * @return
      */
     fun removeAllRick(names: List<String>): List<String> {
-        return names.filter { it != "Rick" }
+        TODO()
     }
 
     /**
@@ -202,7 +198,7 @@ class CollectionsBeginner {
      * @return
      */
     fun removeRs(names: List<String>): List<String> {
-        return names.filterNot { it.lowercase().contains("r") }
+        TODO()
     }
 
     /**
@@ -212,7 +208,7 @@ class CollectionsBeginner {
      * @return
      */
     fun makeSquares(numbers: List<Int>): List<Int> {
-        return numbers.map { it * it }
+        TODO()
     }
 
     /**
@@ -222,7 +218,7 @@ class CollectionsBeginner {
      * @return
      */
     fun getSquareRoots(numbers: List<Int>): List<Int> {
-        return numbers.map { sqrt(it.toDouble()).toInt() }
+        TODO()
     }
 
     /**
@@ -232,6 +228,6 @@ class CollectionsBeginner {
      * @return
      */
     fun getStringVersions(numbers: List<Int>): List<String> {
-        return numbers.map { it.toString() }
+        TODO()
     }
 }

@@ -18,7 +18,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun groupPeopleByAge(people: List<Person>): Map<Int, List<Person>> {
-        return people.groupBy { it.age }
+        TODO()
     }
 
     /**
@@ -28,7 +28,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun countOccurrencesOfEachWord(words: List<String>): Map<String, Int> {
-        return words.groupingBy { it }.eachCount()
+        TODO()
     }
 
     /**
@@ -38,7 +38,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun mapValueToAccumulationOfOccurrence(numbersOccurrences: List<Int>): Map<Int, Int> {
-        return numbersOccurrences.groupingBy { it }.fold(0) { acc, _ -> acc + 1 }
+        TODO()
     }
 
     /**
@@ -48,8 +48,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun groupByEmployeesAgeThenGroupByLengthOfName(employees: List<Person>): Map<Int, Map<Int, List<Person>>> {
-        return employees.groupBy { it.age }
-            .mapValues { (_, people) -> people.groupBy { it.name.length } }
+        TODO()
     }
 
 
@@ -60,7 +59,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun convertMapValuesToUppercase(namesMap: Map<Int, String>): Map<Int, String> {
-        return namesMap.mapValues { (_, value) -> value.uppercase() }
+        TODO()
     }
 
 
@@ -71,7 +70,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun increaseSalariesBy10Percent(salaries: Map<String, Int>): Map<String, Int> {
-        return salaries.mapValues { (_, salary) -> (salary * 1.1).toInt() }
+        TODO()
     }
 
 
@@ -82,7 +81,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun groupEmployeesByAgeAndCountByName(employees: List<Person>): Map<Int, Int> {
-        return employees.groupBy { it.age }.mapValues { (_, people) -> people.size }
+        TODO()
     }
 
     /**
@@ -92,7 +91,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun convertIntKeyToString(numbersMap: Map<Int, String>): Map<String, String> {
-        return numbersMap.mapKeys { (key, _) -> "Number $key" }
+        TODO()
     }
 
     /**
@@ -102,7 +101,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun sumTheListsOfListOfInts(nestedList: List<List<Int>>): Int {
-        return nestedList.flatten().sum()
+        TODO()
     }
 
     /**
@@ -112,11 +111,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun stringParsingIntoListThenMap(rawData: String): Map<String, Int> {
-        return rawData
-            .split(",")
-            .filter { it.isNotBlank() }// split into list of items
-            .map { it.split(":") } // split into pairs for k:v
-            .associate { it[0] to it[1].toInt() } // create map entry
+        TODO() // create map entry
     }
 
     /**
@@ -126,11 +121,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun groupWordsByLengthFromASentence(sentence: String): Map<Int, List<String>> {
-        return sentence
-            .split(" ")
-            .map { it.replace(Regex("[^\\w']"), "") }
-            .filter { it.isNotBlank() }
-            .groupBy { it.length }
+        TODO()
     }
 
     /**
@@ -140,11 +131,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun calculateWordFrequencyInASentence(sentence: String): Map<String, Int> {
-        return sentence
-            .split(" ")
-            .filter { it.isNotBlank() }
-            .groupingBy { it }
-            .eachCount()
+        TODO()
     }
 
 
@@ -155,7 +142,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun filterAndSumBasedOnEvenCount(numbersListOddEven: List<Int>): Int {
-        return numbersListOddEven.filter { it % 2 == 0 }.sum()
+        TODO()
     }
 
     /**
@@ -165,7 +152,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun getPairOfListsSplittingAvailableAndUnavailableItems(stores: List<Store>): Pair<List<Item>, List<Item>> {
-        return stores.flatMap { it.items }.partition { it.isAvailable }
+        TODO()
     }
 
     /**
@@ -175,9 +162,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun getStoresWithMoreItemsAvailableThanNot(stores: List<Store>): Set<Store> {
-        return stores.filter { store ->
-            store.items.count { it.isAvailable } > store.items.count { !it.isAvailable }
-        }.toSet()
+        TODO()
     }
 
     /**
@@ -187,7 +172,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun separateItemsByAvailableFlagIntoLists(items: List<Item>): Pair<List<Item>, List<Item>> {
-        return items.partition { it.isAvailable }
+        TODO()
     }
 
     /**
@@ -197,10 +182,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun getItemsAvailableInAllStores(stores: List<Store>): Set<Item> {
-        if (stores.isEmpty()) return emptySet()
-        return stores.map { it.items.toSet() }.reduce { available, items ->
-            available.intersect(items)
-        }
+        TODO()
     }
 
     /**
@@ -210,9 +192,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun mapItemsToStoresAsAvailableCount(stores: List<Store>): Map<Item, Int> {
-        return stores.flatMap { store ->
-            store.items.filter { it.isAvailable }
-        }.groupingBy { it }.eachCount()
+        TODO()
     }
 
     /**
@@ -222,12 +202,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun findTheMostAvailableItemsInStores(stores: List<Store>): List<Item> {
-        val itemCounts =
-            stores.flatMap { it.items.filter { it.isAvailable } }.groupingBy { it }.eachCount()
-
-        val maxCount = itemCounts.values.maxOrNull() ?: return emptyList()
-
-        return itemCounts.filterValues { it == maxCount }.keys.toList()
+        TODO()
     }
 
     /**
@@ -237,28 +212,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun findTheStoreWithTheMostAvailableItems(stores: List<Store>): List<Store> {
-        // for each store count how many available items there are
-        // return store with max count
-        var res = mutableListOf<Store>()
-        var maxCount = 0
-        for (s in stores) {
-            var availableCount = 0
-            for (i in s.items) {
-                if (i.isAvailable) {
-                    // increase local count
-                    availableCount++
-                }
-            }
-            // if local count > max, use this store as return value
-            if (availableCount > maxCount) {
-                maxCount = availableCount
-                res.clear()
-                res.add(s)
-            } else if (availableCount > 0 && availableCount == maxCount) {
-                res.add(s)
-            }
-        }
-        return res
+        TODO()
     }
 
     /**
@@ -268,13 +222,6 @@ class CollectionsAdvanced {
      * @return
      */
     fun findTheStoreWithTheMostAvailableItems2(stores: List<Store>): List<Store> {
-        val maxCount =
-            stores.maxOfOrNull { it.items.count { it.isAvailable } } ?: return emptyList()
-
-        return if (maxCount > 0) {
-            stores.filter { it.items.count { it.isAvailable } == maxCount }
-        } else {
-            emptyList()
-        }
+        TODO()
     }
 }
