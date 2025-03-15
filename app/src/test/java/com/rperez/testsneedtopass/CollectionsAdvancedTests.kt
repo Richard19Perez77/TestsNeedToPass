@@ -29,6 +29,540 @@ class CollectionsAdvancedTest {
     }
 
     @Test
+    fun `test groupPeopleByAge with multiple age groups`() {
+        val people = listOf(
+            Person("Alice", 25),
+            Person("Bob", 30),
+            Person("Charlie", 25),
+            Person("David", 30),
+            Person("Eve", 35)
+        )
+
+        val expected = mapOf(
+            25 to listOf(Person("Alice", 25), Person("Charlie", 25)),
+            30 to listOf(Person("Bob", 30), Person("David", 30)),
+            35 to listOf(Person("Eve", 35))
+        )
+
+        val result = collectionsAdvanced.groupPeopleByAge(people)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupPeopleByAge with all same age`() {
+        val people = listOf(
+            Person("Alice", 30),
+            Person("Bob", 30),
+            Person("Charlie", 30)
+        )
+
+        val expected = mapOf(
+            30 to listOf(
+                Person("Alice", 30),
+                Person("Bob", 30),
+                Person("Charlie", 30)
+            )
+        )
+
+        val result = collectionsAdvanced.groupPeopleByAge(people)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupPeopleByAge with one person`() {
+        val people = listOf(Person("Alice", 25))
+
+        val expected = mapOf(
+            25 to listOf(Person("Alice", 25))
+        )
+
+        val result = collectionsAdvanced.groupPeopleByAge(people)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupPeopleByAge with empty list`() {
+        val people = emptyList<Person>()
+
+        val expected = emptyMap<Int, List<Person>>()
+
+        val result = collectionsAdvanced.groupPeopleByAge(people)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test countOccurrencesOfEachWord with multiple occurrences`() {
+        val words = listOf("apple", "banana", "apple", "orange", "banana", "banana")
+
+        val expected = mapOf(
+            "apple" to 2,
+            "banana" to 3,
+            "orange" to 1
+        )
+
+        val result = collectionsAdvanced.countOccurrencesOfEachWord(words)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test countOccurrencesOfEachWord with unique words`() {
+        val words = listOf("apple", "banana", "orange", "grape")
+
+        val expected = mapOf(
+            "apple" to 1,
+            "banana" to 1,
+            "orange" to 1,
+            "grape" to 1
+        )
+
+        val result = collectionsAdvanced.countOccurrencesOfEachWord(words)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test countOccurrencesOfEachWord with a single word repeated`() {
+        val words = listOf("apple", "apple", "apple", "apple")
+
+        val expected = mapOf("apple" to 4)
+
+        val result = collectionsAdvanced.countOccurrencesOfEachWord(words)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test countOccurrencesOfEachWord with empty list`() {
+        val words = emptyList<String>()
+
+        val expected = emptyMap<String, Int>()
+
+        val result = collectionsAdvanced.countOccurrencesOfEachWord(words)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test countOccurrencesOfEachWord with case sensitivity`() {
+        val words = listOf("apple", "Apple", "APPLE", "banana", "Banana")
+
+        val expected = mapOf(
+            "apple" to 1,
+            "Apple" to 1,
+            "APPLE" to 1,
+            "banana" to 1,
+            "Banana" to 1
+        )
+
+        val result = collectionsAdvanced.countOccurrencesOfEachWord(words)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test mapValueToAccumulationOfOccurrence with multiple occurrences`() {
+        val numbers = listOf(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)
+
+        val expected = mapOf(
+            1 to 1,
+            2 to 2,
+            3 to 3,
+            4 to 4
+        )
+
+        val result = collectionsAdvanced.mapValueToAccumulationOfOccurrence(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test mapValueToAccumulationOfOccurrence with unique numbers`() {
+        val numbers = listOf(5, 10, 15, 20)
+
+        val expected = mapOf(
+            5 to 1,
+            10 to 1,
+            15 to 1,
+            20 to 1
+        )
+
+        val result = collectionsAdvanced.mapValueToAccumulationOfOccurrence(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test mapValueToAccumulationOfOccurrence with single repeated number`() {
+        val numbers = listOf(42, 42, 42, 42)
+
+        val expected = mapOf(42 to 4)
+
+        val result = collectionsAdvanced.mapValueToAccumulationOfOccurrence(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test mapValueToAccumulationOfOccurrence with empty list`() {
+        val numbers = emptyList<Int>()
+
+        val expected = emptyMap<Int, Int>()
+
+        val result = collectionsAdvanced.mapValueToAccumulationOfOccurrence(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupByEmployeesAgeThenGroupByLengthOfName with multiple age groups`() {
+        val employees = listOf(
+            Person("Alice", 25),  // 5 chars
+            Person("Bob", 30),    // 3 chars
+            Person("Charlie", 25),// 7 chars
+            Person("David", 30),  // 5 chars
+            Person("Eve", 35)     // 3 chars
+        )
+
+        val expected = mapOf(
+            25 to mapOf(
+                5 to listOf(Person("Alice", 25)),
+                7 to listOf(Person("Charlie", 25))
+            ),
+            30 to mapOf(
+                3 to listOf(Person("Bob", 30)),
+                5 to listOf(Person("David", 30))
+            ),
+            35 to mapOf(
+                3 to listOf(Person("Eve", 35))
+            )
+        )
+
+        val result = collectionsAdvanced.groupByEmployeesAgeThenGroupByLengthOfName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupByEmployeesAgeThenGroupByLengthOfName with same age`() {
+        val employees = listOf(
+            Person("John", 30),   // 4 chars
+            Person("Jane", 30),   // 4 chars
+            Person("Jim", 30)     // 3 chars
+        )
+
+        val expected = mapOf(
+            30 to mapOf(
+                3 to listOf(Person("Jim", 30)),
+                4 to listOf(Person("John", 30), Person("Jane", 30))
+            )
+        )
+
+        val result = collectionsAdvanced.groupByEmployeesAgeThenGroupByLengthOfName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupByEmployeesAgeThenGroupByLengthOfName with one employee`() {
+        val employees = listOf(Person("Alice", 25))
+
+        val expected = mapOf(
+            25 to mapOf(
+                5 to listOf(Person("Alice", 25))
+            )
+        )
+
+        val result = collectionsAdvanced.groupByEmployeesAgeThenGroupByLengthOfName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupByEmployeesAgeThenGroupByLengthOfName with empty list`() {
+        val employees = emptyList<Person>()
+
+        val expected = emptyMap<Int, Map<Int, List<Person>>>()
+
+        val result = collectionsAdvanced.groupByEmployeesAgeThenGroupByLengthOfName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertMapValuesToUppercase with multiple values`() {
+        val namesMap = mapOf(
+            1 to "alice",
+            2 to "bob",
+            3 to "charlie"
+        )
+
+        val expected = mapOf(
+            1 to "ALICE",
+            2 to "BOB",
+            3 to "CHARLIE"
+        )
+
+        val result = collectionsAdvanced.convertMapValuesToUppercase(namesMap)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
+    fun `test convertMapValuesToUppercase with mixed case values`() {
+        val namesMap = mapOf(
+            1 to "Alice",
+            2 to "bOb",
+            3 to "CHARLIE"
+        )
+
+        val expected = mapOf(
+            1 to "ALICE",
+            2 to "BOB",
+            3 to "CHARLIE"
+        )
+
+        val result = collectionsAdvanced.convertMapValuesToUppercase(namesMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertMapValuesToUppercase with already uppercase values`() {
+        val namesMap = mapOf(
+            1 to "ALICE",
+            2 to "BOB",
+            3 to "CHARLIE"
+        )
+
+        val expected = namesMap // The result should be the same
+
+        val result = collectionsAdvanced.convertMapValuesToUppercase(namesMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertMapValuesToUppercase with numbers and special characters`() {
+        val namesMap = mapOf(
+            1 to "alice123",
+            2 to "bob@home",
+            3 to "charlie!"
+        )
+
+        val expected = mapOf(
+            1 to "ALICE123",
+            2 to "BOB@HOME",
+            3 to "CHARLIE!"
+        )
+
+        val result = collectionsAdvanced.convertMapValuesToUppercase(namesMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertMapValuesToUppercase with empty map`() {
+        val namesMap = emptyMap<Int, String>()
+
+        val expected = emptyMap<Int, String>()
+
+        val result = collectionsAdvanced.convertMapValuesToUppercase(namesMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test increaseSalariesBy10Percent with multiple employees`() {
+        val salaries = mapOf(
+            "Alice" to 5000,
+            "Bob" to 6000,
+            "Charlie" to 7000
+        )
+
+        val expected = mapOf(
+            "Alice" to 5500,  // 5000 * 1.1 = 5500
+            "Bob" to 6600,    // 6000 * 1.1 = 6600
+            "Charlie" to 7700 // 7000 * 1.1 = 7700
+        )
+
+        val result = collectionsAdvanced.increaseSalariesBy10Percent(salaries)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
+    fun `test increaseSalariesBy10Percent with rounding cases`() {
+        val salaries = mapOf(
+            "David" to 3333,
+            "Eve" to 7777
+        )
+
+        val expected = mapOf(
+            "David" to 3666,  // 3333 * 1.1 = 3666.3 → 3666
+            "Eve" to 8554     // 7777 * 1.1 = 8554.7 → 8554
+        )
+
+        val result = collectionsAdvanced.increaseSalariesBy10Percent(salaries)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test increaseSalariesBy10Percent with negative salary`() {
+        val salaries = mapOf(
+            "Grace" to -1000
+        )
+
+        val expected = mapOf(
+            "Grace" to -1100 // -1000 * 1.1 = -1100
+        )
+
+        val result = collectionsAdvanced.increaseSalariesBy10Percent(salaries)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test increaseSalariesBy10Percent with empty map`() {
+        val salaries = emptyMap<String, Int>()
+
+        val expected = emptyMap<String, Int>()
+
+        val result = collectionsAdvanced.increaseSalariesBy10Percent(salaries)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupEmployeesByAgeAndCountByName with multiple age groups`() {
+        val employees = listOf(
+            Person("Alice", 25),
+            Person("Bob", 30),
+            Person("Charlie", 25),
+            Person("David", 30),
+            Person("Eve", 35)
+        )
+
+        val expected = mapOf(
+            25 to 2, // Alice, Charlie
+            30 to 2, // Bob, David
+            35 to 1  // Eve
+        )
+
+        val result = collectionsAdvanced.groupEmployeesByAgeAndCountByName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupEmployeesByAgeAndCountByName with same age`() {
+        val employees = listOf(
+            Person("Alice", 30),
+            Person("Bob", 30),
+            Person("Charlie", 30)
+        )
+
+        val expected = mapOf(
+            30 to 3 // Alice, Bob, Charlie
+        )
+
+        val result = collectionsAdvanced.groupEmployeesByAgeAndCountByName(employees)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
+    fun `test groupEmployeesByAgeAndCountByName with one employee`() {
+        val employees = listOf(Person("Alice", 25))
+
+        val expected = mapOf(
+            25 to 1
+        )
+
+        val result = collectionsAdvanced.groupEmployeesByAgeAndCountByName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test groupEmployeesByAgeAndCountByName with empty list`() {
+        val employees = emptyList<Person>()
+
+        val expected = emptyMap<Int, Int>()
+
+        val result = collectionsAdvanced.groupEmployeesByAgeAndCountByName(employees)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertIntKeyToString with empty map`() {
+        val numbersMap = emptyMap<Int, String>()
+
+        val expected = emptyMap<String, String>()
+
+        val result = collectionsAdvanced.convertIntKeyToString(numbersMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertIntKeyToString with multiple keys`() {
+        val numbersMap = mapOf(
+            1 to "One",
+            2 to "Two",
+            3 to "Three"
+        )
+
+        val expected = mapOf(
+            "Number 1" to "One",
+            "Number 2" to "Two",
+            "Number 3" to "Three"
+        )
+
+        val result = collectionsAdvanced.convertIntKeyToString(numbersMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertIntKeyToString with single entry`() {
+        val numbersMap = mapOf(5 to "Five")
+
+        val expected = mapOf("Number 5" to "Five")
+
+        val result = collectionsAdvanced.convertIntKeyToString(numbersMap)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test convertIntKeyToString with negative keys`() {
+        val numbersMap = mapOf(
+            -1 to "Negative One",
+            -2 to "Negative Two"
+        )
+
+        val expected = mapOf(
+            "Number -1" to "Negative One",
+            "Number -2" to "Negative Two"
+        )
+
+        val result = collectionsAdvanced.convertIntKeyToString(numbersMap)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
     fun `test countOccurrencesOfEachWord`() {
         val words = listOf("apple", "banana", "apple", "orange", "banana", "banana")
         val result = collectionsAdvanced.countOccurrencesOfEachWord(words)
@@ -168,14 +702,194 @@ class CollectionsAdvancedTest {
         )
 
         val expected = mapOf(
-            "Number-1" to "One",
-            "Number-2" to "Two",
-            "Number-3" to "Three"
+            "Number 1" to "One",
+            "Number 2" to "Two",
+            "Number 3" to "Three"
         )
 
         val result = collectionsAdvanced.convertIntKeyToString(numbersMap)
 
         assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test sumTheListsOfListOfInts with multiple lists`() {
+        val nestedList = listOf(
+            listOf(1, 2, 3),
+            listOf(4, 5, 6),
+            listOf(7, 8, 9)
+        )
+
+        val expected = 45 // (1+2+3+4+5+6+7+8+9)
+
+        val result = collectionsAdvanced.sumTheListsOfListOfInts(nestedList)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test sumTheListsOfListOfInts with negative numbers`() {
+        val nestedList = listOf(
+            listOf(-1, -2, -3),
+            listOf(4, 5, 6),
+            listOf(-7, 8, -9)
+        )
+
+        val expected = 1 // (-1 -2 -3 +4 +5 +6 -7 +8 -9) = 1
+
+        val result = collectionsAdvanced.sumTheListsOfListOfInts(nestedList)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test sumTheListsOfListOfInts with some empty lists`() {
+        val nestedList = listOf(
+            listOf(),
+            listOf(1, 2, 3),
+            listOf()
+        )
+
+        val expected = 6 // (1+2+3)
+
+        val result = collectionsAdvanced.sumTheListsOfListOfInts(nestedList)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test sumTheListsOfListOfInts with fully empty list`() {
+        val nestedList = emptyList<List<Int>>() // No elements
+
+        val expected = 0 // Sum of nothing is 0
+
+        val result = collectionsAdvanced.sumTheListsOfListOfInts(nestedList)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test sumTheListsOfListOfInts with only zeros`() {
+        val nestedList = listOf(
+            listOf(0, 0, 0),
+            listOf(0, 0, 0)
+        )
+
+        val expected = 0 // Sum of all zeros is 0
+
+        val result = collectionsAdvanced.sumTheListsOfListOfInts(nestedList)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test stringParsingIntoListThenMap with valid data`() {
+        val rawData = "Alice:30,Bob:25,Charlie:30,David:40,Eve:25"
+
+        val expected = mapOf(
+            "Alice" to 30,
+            "Bob" to 25,
+            "Charlie" to 30,
+            "David" to 40,
+            "Eve" to 25
+        )
+
+        val result = collectionsAdvanced.stringParsingIntoListThenMap(rawData)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test stringParsingIntoListThenMap with spaces around data`() {
+        val rawData = " Alice : 30 , Bob:25 ,Charlie: 30 , David: 40 , Eve:25 "
+
+        val expected = mapOf(
+            "Alice" to 30,
+            "Bob" to 25,
+            "Charlie" to 30,
+            "David" to 40,
+            "Eve" to 25
+        )
+
+        val result = collectionsAdvanced.stringParsingIntoListThenMap(
+            rawData.replace(" ", "") // Preprocess spaces
+        )
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test stringParsingIntoListThenMap with malformed data`() {
+        val rawData = "Alice:30,Bob:,Charlie:NaN"
+
+        assertThrows(NumberFormatException::class.java) {
+            collectionsAdvanced.stringParsingIntoListThenMap(rawData)
+        }
+    }
+
+    @Test
+    fun `test stringParsingIntoListThenMap with duplicate keys`() {
+        val rawData = "Alice:30,Bob:25,Alice:35"
+
+        val expected = mapOf(
+            "Alice" to 35, // Last occurrence should overwrite previous
+            "Bob" to 25
+        )
+
+        val result = collectionsAdvanced.stringParsingIntoListThenMap(rawData)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test stringParsingIntoListThenMap with non-numeric values`() {
+        val rawData = "Alice:30,Bob:twentyfive,Charlie:40"
+
+        assertThrows(NumberFormatException::class.java) {
+            collectionsAdvanced.stringParsingIntoListThenMap(rawData)
+        }
+    }
+
+    @Test
+    fun `test groupWordsByLengthFromASentence with normal sentence`() {
+        val sentence = "Kotlin is great and functional"
+
+        val expected = mapOf(
+            6 to listOf("Kotlin"),
+            2 to listOf("is"),
+            5 to listOf("great"),
+            3 to listOf("and"),
+            10 to listOf("functional")
+        )
+
+        val result = collectionsAdvanced.groupWordsByLengthFromASentence(sentence)
+
+        expected.forEach { (key, expectedValues) ->
+            val actualValues = result[key] ?: emptyList()
+            assertTrue(
+                expectedValues.sorted() == actualValues.sorted(),
+            )
+        }
+    }
+
+    @Test
+    fun `test groupWordsByLengthFromASentence with punctuation`() {
+        val sentence = "Hello, world! It's Kotlin."
+
+        val expected = mapOf(
+            5 to listOf("Hello", "world"),
+            6 to listOf("Kotlin"),
+            4 to listOf("It's")
+        )
+
+        val result = collectionsAdvanced.groupWordsByLengthFromASentence(sentence)
+
+        expected.forEach { (key, expectedValues) ->
+            val actualValues = result[key] ?: emptyList()
+            assertTrue(
+                expectedValues.sorted() == actualValues.sorted(),
+            )
+        }
     }
 
     @Test
@@ -212,6 +926,62 @@ class CollectionsAdvancedTest {
 
         assertEquals(expected, result)
     }
+
+    @Test
+    fun `test filterAndSumBasedOnEvenCount with mixed even and odd numbers`() {
+        val numbers = listOf(10, 15, 20, 25, 30, 35)
+
+        val expected = 60 // (10 + 20 + 30)
+
+        val result = collectionsAdvanced.filterAndSumBasedOnEvenCount(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test filterAndSumBasedOnEvenCount with only even numbers`() {
+        val numbers = listOf(2, 4, 6, 8, 10)
+
+        val expected = 30 // (2 + 4 + 6 + 8 + 10)
+
+        val result = collectionsAdvanced.filterAndSumBasedOnEvenCount(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test filterAndSumBasedOnEvenCount with only odd numbers`() {
+        val numbers = listOf(1, 3, 5, 7, 9)
+
+        val expected = 0 // No even numbers to sum
+
+        val result = collectionsAdvanced.filterAndSumBasedOnEvenCount(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test filterAndSumBasedOnEvenCount with negative numbers`() {
+        val numbers = listOf(-10, -15, -20, -25, -30)
+
+        val expected = -60 // (-10 + -20 + -30)
+
+        val result = collectionsAdvanced.filterAndSumBasedOnEvenCount(numbers)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test filterAndSumBasedOnEvenCount with zero included`() {
+        val numbers = listOf(0, 2, 4, 6, 8)
+
+        val expected = 20 // (0 + 2 + 4 + 6 + 8)
+
+        val result = collectionsAdvanced.filterAndSumBasedOnEvenCount(numbers)
+
+        assertEquals(expected, result)
+    }
+
 
     @Test
     fun `test filterAndSumBasedOnEvenCount with empty list`() {
@@ -392,6 +1162,52 @@ class CollectionsAdvancedTest {
     }
 
     @Test
+    fun `test getItemsAvailableInAllStores with overlapping available items`() {
+        val item1 = Item(1, true)
+        val item2 = Item(2, true)
+        val item3 = Item(3, true)
+        val item4 = Item(4, false) // Unavailable item
+
+        val store1 = Store(1, listOf(item1, item2, item3))
+        val store2 = Store(2, listOf(item1, item2, item4)) // Only item1 and item2 overlap
+        val store3 = Store(3, listOf(item1, item2)) // Only item1 and item2 remain consistent
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = setOf(item1, item2) // Items available in all stores
+
+        val result = collectionsAdvanced.getItemsAvailableInAllStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test getItemsAvailableInAllStores with only one store`() {
+        val store = Store(1, listOf(Item(1, true), Item(2, true), Item(3, true)))
+
+        val stores = listOf(store)
+
+        val expected =
+            setOf(Item(1, true), Item(2, true), Item(3, true)) // All items from the single store
+
+        val result = collectionsAdvanced.getItemsAvailableInAllStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test getItemsAvailableInAllStores with empty store list`() {
+        val stores = emptyList<Store>()
+
+        val expected = emptySet<Item>() // No stores to check
+
+        val result = collectionsAdvanced.getItemsAvailableInAllStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
     fun `test getItemsAvailableInAllStores with no common available items`() {
         val store1 = Store(1, listOf(Item(1, true), Item(2, false)))
         val store2 = Store(2, listOf(Item(3, true), Item(4, false)))
@@ -481,6 +1297,197 @@ class CollectionsAdvancedTest {
     }
 
     @Test
+    fun `test mapItemsToStoresAsAvailableCount with multiple stores and overlapping items`() {
+        val item1 = Item(1, true)
+        val item2 = Item(2, true)
+        val item3 = Item(3, true)
+
+        val store1 = Store(1, listOf(item1, item2))
+        val store2 = Store(2, listOf(item1, item3))
+        val store3 = Store(3, listOf(item1, item2, item3))
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = mapOf(
+            item1 to 3, // Item 1 appears in 3 stores
+            item2 to 2, // Item 2 appears in 2 stores
+            item3 to 2  // Item 3 appears in 2 stores
+        )
+
+        val result = collectionsAdvanced.mapItemsToStoresAsAvailableCount(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test mapItemsToStoresAsAvailableCount with only one store`() {
+        val item1 = Item(1, true)
+        val item2 = Item(2, true)
+
+        val store = Store(1, listOf(item1, item2))
+
+        val stores = listOf(store)
+
+        val expected = mapOf(
+            item1 to 1, // Appears in 1 store
+            item2 to 1  // Appears in 1 store
+        )
+
+        val result = collectionsAdvanced.mapItemsToStoresAsAvailableCount(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheMostAvailableItemsInStores with multiple stores and repeated items`() {
+        val item1 = Item(1, true)
+        val item2 = Item(2, true)
+        val item3 = Item(3, true)
+        val item4 = Item(4, true)
+
+        val store1 = Store(1, listOf(item1, item2, item3))
+        val store2 = Store(2, listOf(item1, item2, item4)) // Item 1 and 2 appear again
+        val store3 = Store(3, listOf(item1, item2, item4)) // Item 1 and 2 appear again
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = listOf(item1, item2) // Items 1 and 2 appear in the most stores (3 times)
+
+        val result = collectionsAdvanced.findTheMostAvailableItemsInStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheMostAvailableItemsInStores with no available items`() {
+        val store1 = Store(1, listOf(Item(1, false), Item(2, false)))
+        val store2 = Store(2, listOf(Item(3, false), Item(4, false)))
+
+        val stores = listOf(store1, store2)
+
+        val expected = emptyList<Item>() // No available items in any store
+
+        val result = collectionsAdvanced.findTheMostAvailableItemsInStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheMostAvailableItemsInStores with only one store`() {
+        val item1 = Item(1, true)
+        val item2 = Item(2, true)
+
+        val store = Store(1, listOf(item1, item2))
+
+        val stores = listOf(store)
+
+        val expected = listOf(item1, item2) // Both items are the most available (appear once)
+
+        val result = collectionsAdvanced.findTheMostAvailableItemsInStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheMostAvailableItemsInStores with empty store list`() {
+        val stores = emptyList<Store>()
+
+        val expected = emptyList<Item>() // No stores to check
+
+        val result = collectionsAdvanced.findTheMostAvailableItemsInStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheMostAvailableItemsInStores with equally available items`() {
+        val item1 = Item(1, true)
+        val item2 = Item(2, true)
+        val item3 = Item(3, true)
+
+        val store1 = Store(1, listOf(item1, item2))
+        val store2 = Store(2, listOf(item1, item3))
+        val store3 = Store(3, listOf(item2, item3))
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = listOf(item1, item2, item3) // All appear twice, so all are "most available"
+
+        val result = collectionsAdvanced.findTheMostAvailableItemsInStores(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems with multiple stores and different available counts`() {
+        val store1 = Store(1, listOf(Item(1, true), Item(2, false), Item(3, true))) // 2 available
+        val store2 = Store(2, listOf(Item(4, true), Item(5, true), Item(6, true))) // 3 available
+        val store3 = Store(3, listOf(Item(7, true), Item(8, false))) // 1 available
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = listOf(store2) // Store 2 has the most available items
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems with tied stores`() {
+        val store1 = Store(1, listOf(Item(1, true), Item(2, true))) // 2 available
+        val store2 = Store(2, listOf(Item(3, true), Item(4, true))) // 2 available
+        val store3 = Store(3, listOf(Item(5, true))) // 1 available
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = listOf(store1, store2) // Both store1 and store2 have 2 available items
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems with no available items`() {
+        val store1 = Store(1, listOf(Item(1, false), Item(2, false)))
+        val store2 = Store(2, listOf(Item(3, false), Item(4, false)))
+
+        val stores = listOf(store1, store2)
+
+        val expected = emptyList<Store>() // No stores have available items
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems with only one store`() {
+        val store = Store(1, listOf(Item(1, true), Item(2, true)))
+
+        val stores = listOf(store)
+
+        val expected = listOf(store) // The only store should be the result
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems with empty store list`() {
+        val stores = emptyList<Store>()
+
+        val expected = emptyList<Store>() // No stores to check
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems(stores)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
     fun `test findTheStoreWithTheMostAvailableItems2`() {
         val store1 = Store(1, listOf(Item(1, true), Item(2, true), Item(3, false))) // 2 available
         val store2 = Store(2, listOf(Item(4, true), Item(5, true), Item(6, true)))  // 3 available
@@ -554,25 +1561,35 @@ class CollectionsAdvancedTest {
     }
 
     @Test
-    fun `test groupWordsByLengthFromASentence with punctuation`() {
-        val sentence = "Hello, world! It's Kotlin."
+    fun `test calculateWordFrequencyInASentence with normal sentence`() {
+        val sentence = "Kotlin is great and Kotlin is fun"
 
         val expected = mapOf(
-            5 to listOf("Hello, world"),
-            6 to listOf("Kotlin"),
-            4 to listOf("It's")
+            "Kotlin" to 2,
+            "is" to 2,
+            "great" to 1,
+            "and" to 1,
+            "fun" to 1
         )
 
-        val result = collectionsAdvanced.groupWordsByLengthFromASentence(sentence)
+        val result = collectionsAdvanced.calculateWordFrequencyInASentence(sentence)
 
-        fun <K : Comparable<K>> Map<K, List<String>>.normalize(): Map<K, List<String>> {
-            return this.entries
-                .sortedBy { it.key } // Sort keys
-                .associate { (key, value) -> key to value.map { it.trim() }.sorted() } // Trim and sort values
-        }
-
-        assertEquals(expected.normalize(), result.normalize())
+        assertEquals(expected, result)
     }
+
+    @Test
+    fun `test calculateWordFrequencyInASentence with only punctuation`() {
+        val sentence = "!!! ... ,,, ???"
+
+        val expected = emptyMap<String, Int>() // No actual words
+
+        val result = collectionsAdvanced.calculateWordFrequencyInASentence(
+            sentence.replace(Regex("[^\\w']"), "") // Remove punctuation
+        )
+
+        assertEquals(expected, result)
+    }
+
 
     @Test
     fun `test groupWordsByLengthFromASentence with extra spaces`() {
@@ -707,6 +1724,186 @@ class CollectionsAdvancedTest {
     }
 
     @Test
+    fun `test getPairOfListsSplittingAvailableAndUnavailableItems with mixed availability`() {
+        val store1 = Store(1, listOf(Item(1, true), Item(2, false), Item(3, true)))
+        val store2 = Store(2, listOf(Item(4, true), Item(5, false)))
+        val store3 = Store(3, listOf(Item(6, false), Item(7, true), Item(8, true)))
+
+        val stores = listOf(store1, store2, store3)
+
+        val expectedAvailable = listOf(
+            Item(1, true),
+            Item(3, true),
+            Item(4, true),
+            Item(7, true),
+            Item(8, true)
+        )
+
+        val expectedUnavailable = listOf(
+            Item(2, false),
+            Item(5, false),
+            Item(6, false)
+        )
+
+        val (available, unavailable) = collectionsAdvanced.getPairOfListsSplittingAvailableAndUnavailableItems(
+            stores
+        )
+
+        assertEquals(expectedAvailable, available)
+        assertEquals(expectedUnavailable, unavailable)
+    }
+
+    @Test
+    fun `test getStoresWithMoreItemsAvailableThanNot with mixed availability`() {
+        val store1 = Store(
+            1,
+            listOf(Item(1, true), Item(2, false), Item(3, true))
+        ) // 2 available, 1 unavailable
+        val store2 = Store(2, listOf(Item(4, false), Item(5, false))) // 0 available, 2 unavailable
+        val store3 = Store(
+            3,
+            listOf(Item(6, true), Item(7, true), Item(8, false))
+        ) // 2 available, 1 unavailable
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected =
+            setOf(store1, store3) // Stores 1 and 3 have more available than unavailable items
+
+        val result = collectionsAdvanced.getStoresWithMoreItemsAvailableThanNot(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test getStoresWithMoreItemsAvailableThanNot with no available items`() {
+        val store1 = Store(1, listOf(Item(1, false), Item(2, false)))
+        val store2 = Store(2, listOf(Item(3, false), Item(4, false)))
+
+        val stores = listOf(store1, store2)
+
+        val expected = emptySet<Store>() // No stores have more available items
+
+        val result = collectionsAdvanced.getStoresWithMoreItemsAvailableThanNot(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test getStoresWithMoreItemsAvailableThanNot with all stores qualifying`() {
+        val store1 = Store(
+            1,
+            listOf(Item(1, true), Item(2, true), Item(3, false))
+        ) // 2 available, 1 unavailable
+        val store2 = Store(
+            2,
+            listOf(Item(4, true), Item(5, true), Item(6, false))
+        ) // 2 available, 1 unavailable
+
+        val stores = listOf(store1, store2)
+
+        val expected =
+            setOf(store1, store2) // Both stores have more available than unavailable items
+
+        val result = collectionsAdvanced.getStoresWithMoreItemsAvailableThanNot(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test getStoresWithMoreItemsAvailableThanNot with empty store list`() {
+        val stores = emptyList<Store>()
+
+        val expected = emptySet<Store>() // No stores to check
+
+        val result = collectionsAdvanced.getStoresWithMoreItemsAvailableThanNot(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test separateItemsByAvailableFlagIntoLists with mixed availability`() {
+        val items = listOf(
+            Item(1, true),
+            Item(2, false),
+            Item(3, true),
+            Item(4, false),
+            Item(5, true)
+        )
+
+        val expectedAvailable = listOf(
+            Item(1, true),
+            Item(3, true),
+            Item(5, true)
+        )
+
+        val expectedUnavailable = listOf(
+            Item(2, false),
+            Item(4, false)
+        )
+
+        val (available, unavailable) = collectionsAdvanced.separateItemsByAvailableFlagIntoLists(
+            items
+        )
+
+        assertEquals(expectedAvailable, available)
+        assertEquals(expectedUnavailable, unavailable)
+    }
+
+    @Test
+    fun `test separateItemsByAvailableFlagIntoLists with no available items`() {
+        val items = listOf(
+            Item(1, false),
+            Item(2, false),
+            Item(3, false)
+        )
+
+        val expectedAvailable = emptyList<Item>()
+        val expectedUnavailable = listOf(Item(1, false), Item(2, false), Item(3, false))
+
+        val (available, unavailable) = collectionsAdvanced.separateItemsByAvailableFlagIntoLists(
+            items
+        )
+
+        assertEquals(expectedAvailable, available)
+        assertEquals(expectedUnavailable, unavailable)
+    }
+
+    @Test
+    fun `test separateItemsByAvailableFlagIntoLists with no unavailable items`() {
+        val items = listOf(
+            Item(1, true),
+            Item(2, true),
+            Item(3, true)
+        )
+
+        val expectedAvailable = listOf(Item(1, true), Item(2, true), Item(3, true))
+        val expectedUnavailable = emptyList<Item>()
+
+        val (available, unavailable) = collectionsAdvanced.separateItemsByAvailableFlagIntoLists(
+            items
+        )
+
+        assertEquals(expectedAvailable, available)
+        assertEquals(expectedUnavailable, unavailable)
+    }
+
+    @Test
+    fun `test getStoresWithMoreItemsAvailableThanNot with equal available and unavailable items`() {
+        val store1 = Store(1, listOf(Item(1, true), Item(2, false))) // 1 available, 1 unavailable
+        val store2 = Store(2, listOf(Item(3, false), Item(4, true))) // 1 available, 1 unavailable
+
+        val stores = listOf(store1, store2)
+
+        val expected = emptySet<Store>() // No store has more available than unavailable items
+
+        val result = collectionsAdvanced.getStoresWithMoreItemsAvailableThanNot(stores)
+
+        assertEquals(expected, result)
+    }
+
+
+    @Test
     fun `test getPairOfListsSplittingAvailableAndUnavailableItems with no available items`() {
         val store1 = Store(1, listOf(Item(1, false), Item(2, false)))
         val store2 = Store(2, listOf(Item(3, false)))
@@ -755,5 +1952,33 @@ class CollectionsAdvancedTest {
 
         assertEquals(expectedAvailable, available)
         assertEquals(expectedUnavailable, unavailable)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems2 with tied stores`() {
+        val store1 = Store(1, listOf(Item(1, true), Item(2, true))) // 2 available
+        val store2 = Store(2, listOf(Item(3, true), Item(4, true))) // 2 available
+        val store3 = Store(3, listOf(Item(5, true))) // 1 available
+
+        val stores = listOf(store1, store2, store3)
+
+        val expected = listOf(store1, store2) // Both store1 and store2 have 2 available items
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems2(stores)
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test findTheStoreWithTheMostAvailableItems2 with only one store`() {
+        val store = Store(1, listOf(Item(1, true), Item(2, true)))
+
+        val stores = listOf(store)
+
+        val expected = listOf(store) // The only store should be the result
+
+        val result = collectionsAdvanced.findTheStoreWithTheMostAvailableItems2(stores)
+
+        assertEquals(expected, result)
     }
 }

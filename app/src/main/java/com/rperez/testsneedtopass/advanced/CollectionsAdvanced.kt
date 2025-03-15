@@ -52,6 +52,7 @@ class CollectionsAdvanced {
             .mapValues { (_, people) -> people.groupBy { it.name.length } }
     }
 
+
     /**
      * Convert map values to uppercase
      *
@@ -84,7 +85,6 @@ class CollectionsAdvanced {
         return employees.groupBy { it.age }.mapValues { (_, people) -> people.size }
     }
 
-
     /**
      * Convert int key to string
      *
@@ -92,7 +92,7 @@ class CollectionsAdvanced {
      * @return
      */
     fun convertIntKeyToString(numbersMap: Map<Int, String>): Map<String, String> {
-        return numbersMap.mapKeys { (key, _) -> "Number-$key" }
+        return numbersMap.mapKeys { (key, _) -> "Number $key" }
     }
 
     /**
@@ -254,7 +254,7 @@ class CollectionsAdvanced {
                 maxCount = availableCount
                 res.clear()
                 res.add(s)
-            } else if (availableCount == maxCount) {
+            } else if (availableCount > 0 && availableCount == maxCount) {
                 res.add(s)
             }
         }
